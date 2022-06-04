@@ -11,7 +11,7 @@ from tkinter.messagebox import showerror
 import cv2 as cv
 import threading
 
-class rostro ():
+class Rostro ():
     
     def __init__(self) -> None:
         pass
@@ -42,7 +42,7 @@ class rostro ():
 
 
 def tarea_paralela(estado):
-    mi_rostro=rostro()
+    mi_rostro=Rostro()
     while estado[0]:
         print("Toma de imagen: ",mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=False))
         sleep(5)
@@ -65,7 +65,7 @@ def menu():
 
 #menu()
 
-mi_rostro=rostro()
+mi_rostro=Rostro()
 imagen=mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=True)
 
 from google.cloud import vision
