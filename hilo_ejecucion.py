@@ -1,7 +1,7 @@
 from proyecto3 import Rostro
 import threading
-from time import sleep
-from control import detectar
+from time import sleep 
+from  control import detectar
 
 def tarea_paralela(estado):
     mi_rostro=Rostro()
