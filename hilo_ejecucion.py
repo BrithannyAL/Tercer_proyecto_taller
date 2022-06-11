@@ -1,13 +1,13 @@
 from proyecto3 import Rostro
 import threading
-from sonido import sonido
 from time import sleep
+from control import detectar
 
 def tarea_paralela(estado):
     mi_rostro=Rostro()
     while estado[0]:
         mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=False)
-        sonido()
+        detectar()
         sleep(1)
         
 def hilo_de_ejecucion():

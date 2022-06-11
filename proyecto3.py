@@ -22,7 +22,6 @@ class Rostro ():
             cont=3
             while cont>0:
                 print (f'Captura en {cont} segundos...')
-                sleep(1)
                 cont-=1
 
         camara = cv.VideoCapture(0)
