@@ -11,20 +11,13 @@ from tkinter.messagebox import showerror
 import cv2 as cv
 import threading
 
+
 class rostro ():
     
     def __init__(self) -> None:
         pass
 
-    def capturar_imagen(self,vista,cuenta_regresiva):
-
-        if cuenta_regresiva:
-            cont=5
-            while cont>0:
-                print (f'Captura en {cont} segundos...')
-                sleep(1)
-                cont-=1
-
+    def capturar_imagen(self,vista):
         camara = cv.VideoCapture(0)
         leido, imagen = camara.read()
         camara.release()
@@ -66,7 +59,7 @@ def menu():
 #menu()
 
 mi_rostro=rostro()
-imagen=mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=True)
+imagen=mi_rostro.capturar_imagen(vista=False)
 
 from google.cloud import vision
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']= r'key.json'
