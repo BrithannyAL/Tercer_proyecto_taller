@@ -37,8 +37,8 @@ class rostro ():
 def tarea_paralela(estado):
     mi_rostro=rostro()
     while estado[0]:
-        print("Toma de imagen: ",mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=False))
-        sleep(5)
+        print("Toma de imagen: ",mi_rostro.capturar_imagen(vista=False))
+        sleep(10)
 
 def menu():
     estado=[True]
@@ -61,6 +61,8 @@ def menu():
 mi_rostro=rostro()
 imagen=mi_rostro.capturar_imagen(vista=False)
 
+imagen=mi_rostro.capturar_imagen(vista=False,)
+
 from google.cloud import vision
 os.environ['GOOGLE_APPLICATION_CREDENTIALS']= r'key.json'
 client=vision.ImageAnnotatorClient()
@@ -81,9 +83,11 @@ faces_list=[]
 for face in faces:
     #dicccionario con los angulos asociados a la detección de la cara
     face_angles=dict(roll_angle=face.roll_angle,pan_angle=face.pan_angle,tilt_angle=face.tilt_angle)
+    print(f'angulos de la cara {face_angles}')
 
     #confianza de detección (tipo float)
     detection_confidence=face.detection_confidence
+    print(f"No sé qué es {detection_confidence}")
 
     #Probabilidad de Expresiones
     #Emociones: Alegría, pena, ira, sorpresa
@@ -94,6 +98,8 @@ for face in faces:
                             under_exposed_likelihood=likelihood_name[face.under_exposed_likelihood],
                             blurred_likelihood=likelihood_name[face.blurred_likelihood],
                             headwear_likelihood=likelihood_name[face.headwear_likelihood])
+    
+    print(f"Expresiones {face_expressions}")
 
     #polígono de marco de cara
     vertices=[]
@@ -118,6 +124,3 @@ cv.imshow('Toma de fotografia',imagen)
 
 cv.waitKey(0)
 
-
-
-pass
