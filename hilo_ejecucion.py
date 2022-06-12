@@ -5,10 +5,9 @@ from  control import detectar_concentracion
 
 def tarea_paralela(estado):
     mi_rostro=rostro()
-    while estado[0]:
-        mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=False)
+    while estado[0] == True:
+        mi_rostro.capturar_imagen(vista=False)
         detectar_concentracion()
-        sleep(1)
         
 def hilo_de_ejecucion():
     estado=[True]
@@ -27,6 +26,6 @@ def hilo_de_ejecucion():
             print('El hilo sigue en ejecución')
         else:
             print('El caracter ingresado no tiene ninguna función')
-        sleep(10)
+        sleep(5)
             
 hilo_de_ejecucion()

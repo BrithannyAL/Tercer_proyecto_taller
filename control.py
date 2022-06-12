@@ -16,6 +16,8 @@ def detectar_concentracion():
     image = vision.Image(content=content)
     response = client.face_detection(image=image)
     faces = response.face_annotations
+    
+    print('ESTOY EN LA FUNCIÓN DE DETECCIÓN')
 
     if faces:
         for face in faces:
@@ -25,7 +27,6 @@ def detectar_concentracion():
                 sonido()
             elif (face_angles['pan_angle'] > 15) or (face_angles['pan_angle'] < -10):
                 sonido()
-            print(f'Angulos de la cara {face_angles}')
     else:
         print('No se detecta ningún rostro')    
         
