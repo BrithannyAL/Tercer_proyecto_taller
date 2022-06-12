@@ -11,19 +11,13 @@ from tkinter.messagebox import showerror
 import cv2 as cv
 import threading
 
-class Rostro ():
+
+class rostro ():
     
     def __init__(self) -> None:
         pass
 
-    def capturar_imagen(self,vista,cuenta_regresiva):
-
-        if cuenta_regresiva:
-            cont=3
-            while cont>0:
-                print (f'Captura en {cont} segundos...')
-                cont-=1
-
+    def capturar_imagen(self,vista):
         camara = cv.VideoCapture(0)
         leido, imagen = camara.read()
         camara.release()
@@ -41,9 +35,9 @@ class Rostro ():
 
 
 def tarea_paralela(estado):
-    mi_rostro=Rostro()
+    mi_rostro=rostro()
     while estado[0]:
-        print("Toma de imagen: ",mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=False))
+        print("Toma de imagen: ",mi_rostro.capturar_imagen(vista=False))
         sleep(10)
 
 def menu():
@@ -64,72 +58,69 @@ def menu():
 
 #menu()
 
-def capturar():
+mi_rostro=rostro()
+imagen=mi_rostro.capturar_imagen(vista=False)
 
-    mi_rostro=Rostro()
-    imagen=mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=True)
+imagen=mi_rostro.capturar_imagen(vista=False,)
 
-    from google.cloud import vision
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS']= r'key.json'
-    client=vision.ImageAnnotatorClient()
+from google.cloud import vision
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']= r'key.json'
+client=vision.ImageAnnotatorClient()
 
-    with io.open('foto.png','rb') as image_file:
-        content = image_file.read()
+with io.open('foto.png','rb') as image_file:
+    content = image_file.read()
 
-    image = vision.Image(content=content)
+image = vision.Image(content=content)
 
-    response = client.face_detection(image=image)
+response = client.face_detection(image=image)
 
-    faces = response.face_annotations
+faces = response.face_annotations
 
-    likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE', 'LIKELY', 'VERY_LIKELY')
+likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE', 'LIKELY', 'VERY_LIKELY')
 
-    faces_list=[]
+faces_list=[]
 
-    for face in faces:
-        #dicccionario con los angulos asociados a la detección de la cara
-        face_angles=dict(roll_angle=face.roll_angle,pan_angle=face.pan_angle,tilt_angle=face.tilt_angle)
-        print(f'angulos de la cara {face_angles}')
+for face in faces:
+    #dicccionario con los angulos asociados a la detección de la cara
+    face_angles=dict(roll_angle=face.roll_angle,pan_angle=face.pan_angle,tilt_angle=face.tilt_angle)
+    print(f'angulos de la cara {face_angles}')
 
-        #confianza de detección (tipo float)
-        detection_confidence=face.detection_confidence
-        print(f"No sé qué es {detection_confidence}")
+    #confianza de detección (tipo float)
+    detection_confidence=face.detection_confidence
+    print(f"No sé qué es {detection_confidence}")
 
-        #Probabilidad de Expresiones
-        #Emociones: Alegría, pena, ira, sorpresa
-        face_expressions=dict(  joy_likelihood=likelihood_name[face.joy_likelihood],
-                                sorrow_likelihood=likelihood_name[face.sorrow_likelihood],
-                                anger_likelihood=likelihood_name[face.anger_likelihood],
-                                surprise_likelihood=likelihood_name[face.surprise_likelihood],
-                                under_exposed_likelihood=likelihood_name[face.under_exposed_likelihood],
-                                blurred_likelihood=likelihood_name[face.blurred_likelihood],
-                                headwear_likelihood=likelihood_name[face.headwear_likelihood])
-        
-        print(f"Expresiones {face_expressions}")
+    #Probabilidad de Expresiones
+    #Emociones: Alegría, pena, ira, sorpresa
+    face_expressions=dict(  joy_likelihood=likelihood_name[face.joy_likelihood],
+                            sorrow_likelihood=likelihood_name[face.sorrow_likelihood],
+                            anger_likelihood=likelihood_name[face.anger_likelihood],
+                            surprise_likelihood=likelihood_name[face.surprise_likelihood],
+                            under_exposed_likelihood=likelihood_name[face.under_exposed_likelihood],
+                            blurred_likelihood=likelihood_name[face.blurred_likelihood],
+                            headwear_likelihood=likelihood_name[face.headwear_likelihood])
+    
+    print(f"Expresiones {face_expressions}")
 
-        #polígono de marco de cara
-        vertices=[]
-        for vertex in face.bounding_poly.vertices:
-            vertices.append (dict (x=vertex.x, y=vertex.y))
+    #polígono de marco de cara
+    vertices=[]
+    for vertex in face.bounding_poly.vertices:
+        vertices.append (dict (x=vertex.x, y=vertex.y))
 
-        face_dict=dict( face_angles=face_angles,
-                        detection_confidence=detection_confidence,
-                        face_expressions=face_expressions,
-                        vertices=vertices
-                        )
-        faces_list.append(face_dict)
+    face_dict=dict( face_angles=face_angles,
+                    detection_confidence=detection_confidence,
+                    face_expressions=face_expressions,
+                    vertices=vertices
+                    )
+    faces_list.append(face_dict)
 
-    x1=faces_list[0]['vertices'][0]['x']
-    y1=faces_list[0]['vertices'][0]['y']
-    x2=faces_list[0]['vertices'][2]['x']
-    y2=faces_list[0]['vertices'][2]['y']
+x1=faces_list[0]['vertices'][0]['x']
+y1=faces_list[0]['vertices'][0]['y']
+x2=faces_list[0]['vertices'][2]['x']
+y2=faces_list[0]['vertices'][2]['y']
 
-    cv.rectangle(imagen,(x1,y1),(x2,y2),(0,255,0),3)
+cv.rectangle(imagen,(x1,y1),(x2,y2),(0,255,0),3)
 
-    cv.imshow('Toma de fotografia',imagen)
+cv.imshow('Toma de fotografia',imagen)
 
-    cv.waitKey(0)
+cv.waitKey(0)
 
-
-
-    pass

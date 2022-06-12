@@ -1,10 +1,10 @@
-from proyecto3 import Rostro
+from proyecto3 import rostro
 import threading
 from time import sleep 
 from  control import detectar_concentracion
 
 def tarea_paralela(estado):
-    mi_rostro=Rostro()
+    mi_rostro=rostro()
     while estado[0]:
         mi_rostro.capturar_imagen(vista=False,cuenta_regresiva=False)
         detectar_concentracion()
