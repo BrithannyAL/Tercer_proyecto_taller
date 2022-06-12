@@ -2,7 +2,7 @@ from sonido import sonido
 import os, io
 
 
-def detectar():
+def detectar_concentracion():
     """
         Función que detecta los angulos del rostro para saber si el usuaruo está distraido."""
     
