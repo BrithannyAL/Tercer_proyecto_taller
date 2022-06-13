@@ -16,3 +16,7 @@ def hilo(respuesta):
     estado=[respuesta]
     parametros=[estado]
     proceso=threading.Thread(target=tarea_paralela, args=parametros)
+    
+hilo(True)
+sleep(2)
+hilo(False)
