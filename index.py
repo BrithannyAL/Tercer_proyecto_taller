@@ -4,7 +4,7 @@ from tkinter import messagebox
 import time
 from datetime import datetime
 import cargar
-from hilo_ejecucion import proceso
+from hilo_ejecucion import hilo
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -48,14 +48,14 @@ after_id = None
 secs = 0
 
 def encender():
-    global proceso
+    hilo(True)
     global secs
     secs = 0
     proceso.start()
     curso_actual()  # start repeated checking
 
 def apagar():
-    global proceso
+    hilo(False)
     global after_id
     proceso._stop()
     if after_id:
