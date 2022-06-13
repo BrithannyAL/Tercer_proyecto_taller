@@ -62,6 +62,9 @@ def apagar():
         root.after_cancel(after_id)
         after_id = None
 
+def generar_reporte():
+    return 0
+
 #Botones pantalla principal
 
 btn_iniciar = tk.Button(root,text = 'Iniciar',width=8)
@@ -69,6 +72,9 @@ btn_iniciar.pack()
 
 btn_detener = tk.Button(root,text='Detener',width=8)
 btn_detener.pack()
+
+btn_reporte = tk.Button(root,text='Reporte',width=8)
+btn_reporte.pack()
 
 btn_salir = tk.Button(root,text = 'Salir',width=8)
 btn_salir.pack()
@@ -81,6 +87,8 @@ btn_iniciar.configure(command=lambda:
 
 btn_detener.configure(command=lambda:
     [lbl_ejecucion.pack_forget(), apagar()])
+
+btn_reporte.configure(command = generar_reporte())
 
 btn_salir.configure(command = root.destroy)
 
