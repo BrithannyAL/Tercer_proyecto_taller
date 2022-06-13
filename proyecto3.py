@@ -25,8 +25,8 @@ class rostro ():
         if leido == True:
             cv.imwrite("foto.png", imagen)
             if vista == True:
-                #cv.imshow('Toma de fotografia',imagen)
-                #cv.waitKey(0)
+                cv.imshow('Toma de fotografia',imagen)
+                cv.waitKey(0)
                 pass
         else:
             showerror(

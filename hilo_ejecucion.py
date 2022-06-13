@@ -1,31 +1,17 @@
 from proyecto3 import rostro
 import threading
 from time import sleep 
-from  control import detectar_concentracion
+from  control import detectar_concentracion, detectar_emociones      
 
-def tarea_paralela(estado):
+#variables globales
+
+def tarea_paralela():
     mi_rostro=rostro()
-    while estado[0] == True:
+    while estado[0]==True:
         mi_rostro.capturar_imagen(vista=False)
         detectar_concentracion()
-        
-def hilo_de_ejecucion():
-    estado=[True]
-    parametros=[estado]
-    proceso=threading.Thread(target=tarea_paralela,args=parametros)
-    proceso.start()
+        detectar_emociones()
 
-    variable = True
-    while variable:
-        respuesta = input('¿Desea terminar con la ejecución? (y/n)')
-        if respuesta == 'y':
-            estado[0]=False
-            exit()
-            variable = False
-        elif  respuesta == 'n':
-            print('El hilo sigue en ejecución')
-        else:
-            print('El caracter ingresado no tiene ninguna función')
-        sleep(5)
-            
-hilo_de_ejecucion()
+estado=[True]
+parametros=[estado]
+proceso=threading.Thread(target=tarea_paralela, args=parametros)

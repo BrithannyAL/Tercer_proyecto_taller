@@ -4,31 +4,14 @@ from tkinter import messagebox
 import time
 from datetime import datetime
 import cargar
-
-
+from hilo_ejecucion import proceso
 
 root = tk.Tk()
 root.title('Proyecto Taller')
 root.minsize(800,600)
 
-def hide(x):
-    for i in x:
-        i.pack_forget()
-
-def show(x):
-    for i in x:
-        i.pack()
-
-FREQ = 2500
-DUR = 150
-after_id = None
-secs = 0
-
-
-#Funcion que determina el curso que se encuentra activo segun la hora
 
 def curso_actual():
-    
     global after_id
     global secs
     secs += 1
@@ -50,17 +33,34 @@ def curso_actual():
         print(actividad_actual)
     after_id = root.after(1000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
 
+
+def hide(x):
+    for i in x:
+        i.pack_forget()
+
+def show(x):
+    for i in x:
+        i.pack()
+
+FREQ = 2500
+DUR = 150
+after_id = None
+secs = 0
+
 def encender():
+    global proceso
     global secs
     secs = 0
+    proceso.start()
     curso_actual()  # start repeated checking
 
 def apagar():
+    global proceso
     global after_id
+    proceso._stop()
     if after_id:
         root.after_cancel(after_id)
         after_id = None
-
 
 #Botones pantalla principal
 
