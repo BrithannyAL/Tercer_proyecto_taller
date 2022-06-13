@@ -49,7 +49,7 @@ def menu():
 
     while True:
         print ("1) Saludar\n2) Salir")
-        if (input ('Selección: ')=='1'):
+        if (input ('SelecciÃ³n: ')=='1'):
             lectura=input("Tu nombre: ")
             print (f"Hola como estas, {lectura}")
         else:
@@ -125,3 +125,4 @@ def procedimiento():
 
     cv.waitKey(0)
 
+    cv.waitKey(0)
