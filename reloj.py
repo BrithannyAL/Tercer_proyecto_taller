@@ -11,3 +11,5 @@ while x == True:
     print(hora[0:2])
     print(hora[3:5])
     time.sleep(5)
+
+'AAAAAAAAAAAA'
