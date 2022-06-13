@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-['U1', 'estudiante', [1], [2, 1], [], [], 'u1', '827ccb0eea8a706c4c34a16891f84e7b', {'Monday': [['Actividad:', 'Estudiar', 'Hora de inicio:', '09:00', 'Hora final:', '12:00', 'Curso relacionado', 'Comunicacion escrita']], 'Thursday': [], 'miercoles': [], 'Wednesday': [], 'Friday': [], 'Saturday': [['Dormir', '22:00:00', '23::00:00', 'None']], 'Sunday': [['Dormir', '00:14:00', '00:23:00', 'None']]}]
-=======
 ['U1', 'estudiante', [1], [2, 1], [], [], 'u1', '827ccb0eea8a706c4c34a16891f84e7b', {'Monday': [['Actividad:', 'Estudiar', 'Hora de inicio:', '09:00', 'Hora final:', '12::00', 'Curso relacionado', 'Comunicacion escrita']], 'Thursday': [], 'miercoles': [], 'Wednesday': [], 'Friday': [], 'Saturday': [['Dormir', '22:00:00', '23:00:00', 'None']], 'Sunday': [['Dormir', '00:14:00', '00:23:00', 'None']]}]
->>>>>>> 555a490e9d4e6fb7952426a79d36c5fff2122f62

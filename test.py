@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-from datetime import datetime
-from proyecto3 import rostro
-from control import detectar_emociones
- 
-def noSe():
-    hora1 = datetime.strptime("00:00:00", "%X").time()
-    hora2 = datetime.strptime("00:15:00", "%X").time()
-    hora_act = datetime.now().time()
-    
-    if hora_act > hora1 and hora_act < hora2:
-        print ("SI")
-        print(hora_act)
-    elif hora_act < hora1 and hora_act > hora2:
-        print ("NO")
-=======
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -49,4 +33,3 @@ ax.set_xlabel('Countries')
 ax.set_ylabel('Area / Population Density')
 plt.legend()
 plt.show()
->>>>>>> 555a490e9d4e6fb7952426a79d36c5fff2122f62
