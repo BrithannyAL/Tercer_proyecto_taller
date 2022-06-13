@@ -51,13 +51,11 @@ def encender():
     hilo(True)
     global secs
     secs = 0
-    proceso.start()
     curso_actual()  # start repeated checking
 
 def apagar():
     hilo(False)
     global after_id
-    proceso._stop()
     if after_id:
         root.after_cancel(after_id)
         after_id = None
