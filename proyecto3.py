@@ -19,7 +19,7 @@ class rostro ():
 
     def capturar_imagen(self,vista):
         camara = cv.VideoCapture(0)
-        leido, imagen = camara.read()
+        leido,imagen = camara.read()
         camara.release()
 
         if leido == True:

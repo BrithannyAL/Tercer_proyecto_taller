@@ -4,7 +4,7 @@ from tkinter import messagebox
 import time
 from datetime import datetime
 import cargar
-from hilo_ejecucion import hilo
+from hilo_ejecucion import proceso
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -15,21 +15,16 @@ def curso_actual():
     global after_id
     global secs
     secs += 1
+    actividad_actual = None
     usuario_data = cargar.cargar_archivos_usuario()
     dia_actual = datetime.today().strftime('%A')
-    for i in usuario_data[8][dia_actual]:
+    for i in usuario_data[5][dia_actual]:
         hora_i = datetime.strptime(i[1], "%X").time()
         hora_f = datetime.strptime(i[2], "%X").time()
         hora_actual = datetime.now().time()
         if hora_actual >= hora_i and hora_actual <= hora_f:
-            actividad_actual = i
-        else:
-            actividad_actual = None
+            actividad_actual = i[0]
     if secs % 2 == 0:  # every other second
-        print('encendido')
-        import proyecto3
-        imagen = proyecto3.rostro()
-        imagen.capturar_imagen(vista=False)
         print(actividad_actual)
     after_id = root.after(1000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
 
@@ -48,13 +43,13 @@ after_id = None
 secs = 0
 
 def encender():
-    hilo(True)
+    proceso.start()
     global secs
     secs = 0
     curso_actual()  # start repeated checking
 
 def apagar():
-    hilo(False)
+    proceso._stop()
     global after_id
     if after_id:
         root.after_cancel(after_id)
