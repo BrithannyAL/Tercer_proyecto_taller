@@ -83,15 +83,7 @@ class emociones:
                     archivo.writelines(
                         [puntero.usuario, puntero.actividad, puntero.emociones].__str__()+"\n")
         except FileNotFoundError as error:
-<<<<<<< HEAD
             messagebox.showerror(title="Error" ,message="Problemas al guardar la informaciÃ³n en los archivos")
     
 
         
-=======
-            messagebox.showerror(title="Error" ,message="Problemas al guardar la información en los archivos")
-            
-
-"""objeto_emociones = emociones('barguello', 'Actividad de prueba', ['Feliz', 'Confundido'])
-objeto_emociones.guardar_en_archivos()"""
->>>>>>> 166d92759af6bbb4dbbe410077f096aa57652779
