@@ -6,7 +6,6 @@ class usuario:
     cursos = []
     usuario = None
     contrasena = None
-    horario = None 
     actividades = None
     sig = None
     ant = None
@@ -18,6 +17,22 @@ class usuario:
         self.usuario= u
         self.contrasena = c
         self.actividades = act
+        
+    def insertar (self,rn):
+        puntero=self
+        while (puntero.sig!=None):
+            puntero=puntero.sig
+        puntero.sig=rn
+        rn.ant = puntero
+        
+    def recorrer_lista(self) -> str:
+        actual = self
+        respuesta = "["
+        while actual.sig != None:
+            respuesta+=f"'{actual.nombre, actual.carreras, actual.cursos, actual.usuario, actual.contrasena, actual.actividades}',"
+            actual=actual.sig
+        respuesta+= f"'{actual.nombre, actual.carreras, actual.cursos, actual.usuario, actual.contrasena, actual.actividades}']"
+        return respuesta
     
     def guardar_en_archivos(self):
         puntero=self
@@ -30,18 +45,7 @@ class usuario:
                     archivo.writelines(
                         [puntero.nombre, puntero.carreras, puntero.cursos, puntero.usuario, puntero.contrasena, puntero.actividades].__str__()+"\n")
         except FileNotFoundError as error:
-            messagebox.showerror(title="Error" ,message="Problemas al guardar la información en los archivos")
-            
-"""actividades = {'Monday': [['Estudiar', '00:12:10', '00:12:30', 'Comunicacion escrita']],
-                'Thursday': [],
-                'Wednesday': [],
-                'Friday': [],
-                'Saturday': [['Dormir', '22:00:00', '23:00:00', 'None']],
-                'Sunday': [['Dormir', '00:14:00', '00:23:00', 'None']]}
-            
-objeto_usuario = usuario('Brithanny Arguello', [3], [1, 2, 3, 4, 5, 6], 'barguello', '827ccb0eea8a706c4c34a16891f84e7b', actividades)
-objeto_usuario.guardar_en_archivos()"""
-            
+            messagebox.showerror(title="Error" ,message="Problemas al guardar la información en los archivos")                      
             
 
 class emociones:

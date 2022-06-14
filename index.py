@@ -5,6 +5,11 @@ import time
 from datetime import datetime
 import cargar
 import hilo_ejecucion
+<<<<<<< HEAD
+=======
+import os
+import test
+>>>>>>> e70520a155613933ea8392898424762638606368
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -26,8 +31,12 @@ def hilo_principal():
             actividad_actual = i[0]
     if secs % 2 == 0:  # every other second
         print(actividad_actual)
+<<<<<<< HEAD
         hilo_ejecucion.tarea_paralela()
     after_id = root.after(10000, hilo_principal)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
+=======
+    after_id = root.after(10000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
+>>>>>>> e70520a155613933ea8392898424762638606368
 
 
 def hide(x):
@@ -45,18 +54,27 @@ secs = 0
 
 def encender():
     global secs
+    hilo_ejecucion.encender_tarea_paralela()
     secs = 0
+<<<<<<< HEAD
     hilo_principal()  # Se empieza el proceso
 
 
+=======
+    #curso_actual()  # start repeated checking
+>>>>>>> e70520a155613933ea8392898424762638606368
 
 def apagar():
     global after_id
+    hilo_ejecucion.apagar_tarea_paralela()
     if after_id:
         root.after_cancel(after_id)
         after_id = None
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e70520a155613933ea8392898424762638606368
 def generar_reporte():
     return 0
 

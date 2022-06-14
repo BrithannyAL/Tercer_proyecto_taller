@@ -55,6 +55,7 @@ def analizar_emociones(face_expressions):
             expression_face[y] = 'Confundido'
             
     print(f'Sus emociones son {expression_face}')
+    return expression_face
         
 def detectar_emociones():
     from google.cloud import vision
@@ -84,4 +85,4 @@ def detectar_emociones():
                                     headwear_likelihood=likelihood_name[face.headwear_likelihood])
             
             print(f"Expresiones {face_expressions}")
-            analizar_emociones(face_expressions)
+            return analizar_emociones(face_expressions)
