@@ -28,7 +28,7 @@ def detectar_concentracion():
             elif (face_angles['pan_angle'] > 15) or (face_angles['pan_angle'] < -10):
                 sonido()
     else:
-        messagebox.showinfo(message='Ningún rostro es detectado')
+        print('Ningún rostro fue detectado')
         
         
 #Para las emociones
@@ -85,7 +85,3 @@ def detectar_emociones():
             
             print(f"Expresiones {face_expressions}")
             analizar_emociones(face_expressions)
-            
-mi_rostro=rostro()
-mi_rostro.capturar_imagen(vista=False)
-detectar_emociones()

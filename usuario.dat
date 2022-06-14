@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ['U1', 'estudiante', [1], [2, 1], [], [], 'u1', '827ccb0eea8a706c4c34a16891f84e7b', {'Monday': [['Estudiar', '09:00:00',  '12:00:00',  'Comunicacion escrita']], 'Thursday': [], 'miercoles': [], 'Wednesday': [], 'Friday': [], 'Saturday': [['Dormir', '22:00:00', '23:00:00', 'None']], 'Sunday': [['Dormir', '00:14:00', '00:23:00', 'None']]}]
+=======
+['Brithanny Arguello', [3], [1, 2, 3, 4, 5, 6], 'barguello', '827ccb0eea8a706c4c34a16891f84e7b', {'Monday': [['Estudiar', '22:30:00', '22:50:00', 'Comunicacion escrita']], 'Thursday': [], 'Wednesday': [], 'Friday': [], 'Saturday': [['Dormir', '22:00:00', '23:00:00', 'None']], 'Sunday': [['Dormir', '00:14:00', '00:23:00', 'None']]}]
+>>>>>>> 166d92759af6bbb4dbbe410077f096aa57652779
