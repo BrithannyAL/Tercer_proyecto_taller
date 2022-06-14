@@ -4,7 +4,9 @@ from tkinter import messagebox
 import time
 from datetime import datetime
 import cargar
-from hilo_ejecucion import proceso, tarea_paralela
+import hilo_ejecucion
+import os
+import test
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -26,7 +28,7 @@ def curso_actual():
             actividad_actual = i[0]
     if secs % 2 == 0:  # every other second
         print(actividad_actual)
-    after_id = root.after(1000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
+    after_id = root.after(10000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
 
 
 def hide(x):
@@ -43,18 +45,20 @@ after_id = None
 secs = 0
 
 def encender():
-    """proceso.start()"""
     global secs
+    hilo_ejecucion.encender_tarea_paralela()
     secs = 0
-    curso_actual()  # start repeated checking
+    #curso_actual()  # start repeated checking
 
 def apagar():
-    """proceso._stop()
-    tarea_paralela(parametros[estado[False]])"""
     global after_id
+    hilo_ejecucion.apagar_tarea_paralela()
     if after_id:
         root.after_cancel(after_id)
         after_id = None
+
+def generar_reporte():
+    return 0
 
 #Botones pantalla principal
 
@@ -63,6 +67,9 @@ btn_iniciar.pack()
 
 btn_detener = tk.Button(root,text='Detener',width=8)
 btn_detener.pack()
+
+btn_reporte = tk.Button(root,text='Reporte',width=8)
+btn_reporte.pack()
 
 btn_salir = tk.Button(root,text = 'Salir',width=8)
 btn_salir.pack()
@@ -75,6 +82,8 @@ btn_iniciar.configure(command=lambda:
 
 btn_detener.configure(command=lambda:
     [lbl_ejecucion.pack_forget(), apagar()])
+
+btn_reporte.configure(command = generar_reporte())
 
 btn_salir.configure(command = root.destroy)
 
