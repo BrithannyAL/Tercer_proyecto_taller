@@ -4,7 +4,7 @@ from tkinter import messagebox
 import time
 from datetime import datetime
 import cargar
-from hilo_ejecucion import proceso
+from hilo_ejecucion import proceso, tarea_paralela
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -43,13 +43,14 @@ after_id = None
 secs = 0
 
 def encender():
-    proceso.start()
+    """proceso.start()"""
     global secs
     secs = 0
     curso_actual()  # start repeated checking
 
 def apagar():
-    proceso._stop()
+    """proceso._stop()
+    tarea_paralela(parametros[estado[False]])"""
     global after_id
     if after_id:
         root.after_cancel(after_id)

@@ -1,5 +1,6 @@
 from tkinter.messagebox import askyesno  
-from objetos import  emociones
+from objetos import  emociones, usuario
+
 
 def cargar_archivos_usuario():
     global usuario
@@ -30,7 +31,7 @@ def cargar_archivos_emociones():
                 respuesta = lectura[0], lectura[1], lectura[2]
             lectura = eval(lector.readline()[:-1])    
             while (lectura != ''):
-                respuesta.insertar(usuario(lectura[0], lectura[1], lectura[2]))
+                respuesta.insertar(emociones(lectura[0], lectura[1], lectura[2]))
                 lectura = eval(lector.readline()[:-1])      
     except FileNotFoundError as error:
         respuesta = askyesno(title="Error", message="No se encontró el archivo de datos ¿Desea crear un nuevo archivo de registros?")
