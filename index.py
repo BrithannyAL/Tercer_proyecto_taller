@@ -4,7 +4,7 @@ from tkinter import messagebox
 import time
 from datetime import datetime
 import cargar
-from hilo_ejecucion import proceso
+from hilo_ejecucion import hilo
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -31,7 +31,7 @@ def curso_actual():
         imagen = proyecto3.rostro()
         imagen.capturar_imagen(vista=False)
         print(actividad_actual)
-    after_id = root.after(1000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
+    after_id = root.after(60000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
 
 
 def hide(x):
@@ -48,16 +48,14 @@ after_id = None
 secs = 0
 
 def encender():
-    global proceso
+    hilo(True)
     global secs
     secs = 0
-    proceso.start()
     curso_actual()  # start repeated checking
 
 def apagar():
-    global proceso
+    hilo(False)
     global after_id
-    proceso._stop()
     if after_id:
         root.after_cancel(after_id)
         after_id = None
