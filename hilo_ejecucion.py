@@ -47,10 +47,33 @@ def guardar_reporte_emociones():
         tomar_foto()
         sleep(1)
       
+    #DATOS 
+    feliz = 0
+    triste = 0
+    enfadado = 0
+    sorprendido = 0
+    confundido = 0
+    no_detectado = 0
+    
     emociones_totales = []  
     for x in reporte_emociones:
         for y in x:
             emociones_totales.append(y)
+                        
+            if y == 'Feliz':
+                feliz =+1
+            elif y == "Triste":
+                triste =+1
+            elif y == "Enfadado":
+                enfadado =+1
+            elif y == "Sorprendido":
+                sorprendido =+1
+            elif y == "Confundido":
+                confundido =+1
+            else:
+                no_detectado =+1
+                
+    cantidades = [feliz, triste, enfadado, sorprendido, confundido]
             
     emociones_data = cargar.cargar_archivos_emociones()
         
