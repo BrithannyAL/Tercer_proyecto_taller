@@ -7,29 +7,30 @@ import cargar
 import hilo_ejecucion
 import os
 import test
+import funciones
 
 root = tk.Tk()
 root.title('Proyecto Taller')
 root.minsize(800,600)
 
+listbox = tk.Listbox(root)
 
-def curso_actual():
-    global after_id
-    global secs
-    secs += 1
-    actividad_actual = None
-    usuario_data = cargar.cargar_archivos_usuario()
-    dia_actual = datetime.today().strftime('%A')
-    for i in usuario_data[5][dia_actual]:
-        hora_i = datetime.strptime(i[1], "%X").time()
-        hora_f = datetime.strptime(i[2], "%X").time()
-        hora_actual = datetime.now().time()
-        if hora_actual >= hora_i and hora_actual <= hora_f:
-            actividad_actual = i[0]
-    if secs % 2 == 0:  # every other second
-        print(actividad_actual)
-    after_id = root.after(10000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
+def crear_listbox(si):
+    if si == 'si':
+        
+        lista = funciones.obtener_reporte_emociones()
 
+        for x in lista:
+            listbox.insert(END, f'Usuario: {x[0]}: Actividad: {x[1]} = {x[2]} => {x[3]}')
+
+        listbox.configure(height=15,selectmode='extended', width=120)
+        listbox.pack()
+        return listbox
+    
+    elif si == 'no':
+        listbox.pack_forget()
+        
+        
 
 def hide(x):
     for i in x:
@@ -45,20 +46,10 @@ after_id = None
 secs = 0
 
 def encender():
-    global secs
     hilo_ejecucion.encender_tarea_paralela()
-    secs = 0
-    #curso_actual()  # start repeated checking
 
 def apagar():
-    global after_id
     hilo_ejecucion.apagar_tarea_paralela()
-    if after_id:
-        root.after_cancel(after_id)
-        after_id = None
-
-def generar_reporte():
-    return 0
 
 #Botones pantalla principal
 
@@ -83,7 +74,7 @@ btn_iniciar.configure(command=lambda:
 btn_detener.configure(command=lambda:
     [lbl_ejecucion.pack_forget(), apagar()])
 
-btn_reporte.configure(command = generar_reporte())
+btn_reporte.configure(command=lambda:  [crear_listbox('si')])
 
 btn_salir.configure(command = root.destroy)
 
