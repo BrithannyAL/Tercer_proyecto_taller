@@ -1,3 +1,2 @@
-['barguello', 'BBBBBBBB', {'Primeros cinco minutos': 'Triste', 'Ultimos cinco minutos': 'Sorprendido'}]
-['barguello', 'Tercera entrega', {'Primeros cinco minutos': 'T', 'Ultimos cinco minutos': 'o', 'Emoci�n dominante': 'r'}]
-['barguello', 'AAAAAAA', {'Primeros cinco minutos': 'El usuario experient� muchos cambios de emociones', 'Ultimos cinco minutos': 'El usuario experient� muchos cambios de emociones', 'Emoci�n dominante': 'No hay emoci�n dominante'}]
+['barguello', 'Tercera_entrega', {'Primeros cinco minutos': 'Triste', 'Ultimos cinco minutos': 'Sorprendido', 'Emocion dominante': 'Triste' }, [3, 1, 4, 3, 7]]
+['barguello', 'AAAAAAA', {'Primeros cinco minutos': 'El usuario experient� muchos cambios de emociones', 'Ultimos cinco minutos': 'El usuario experient� muchos cambios de emociones', 'Emocion dominante': 'No hay emoci�n dominante'}, [7, 7, 3, 9, 8]]

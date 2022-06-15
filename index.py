@@ -7,7 +7,8 @@ import cargar
 import hilo_ejecucion
 import os
 import funciones
-
+from tkinter import ttk
+import graph
 root = tk.Tk()
 root.title('Proyecto Taller')
 root.minsize(800,600)
@@ -20,7 +21,7 @@ def crear_listbox(si):
         lista = funciones.obtener_reporte_emociones()
 
         for x in lista:
-            listbox.insert(END, f'Usuario: {x[0]}: Actividad: {x[1]} = {x[2]} => {x[3]}')
+            listbox.insert(END, f'Usuario: {x[0]}: Actividad: {x[1]} Primeros 5 {x[2]} Ultimos 5 {x[3]} Predominante {x[4]}')
 
         listbox.configure(height=15,selectmode='extended', width=120)
         listbox.pack()
@@ -64,6 +65,19 @@ btn_reporte.pack()
 
 btn_salir = tk.Button(root,text = 'Salir',width=8)
 btn_salir.pack()
+
+cb = ttk.Combobox()
+cb.pack()
+
+actividad = list
+x = cargar.cargar_archivos_emociones()
+x.actividad
+
+cb['values'] = (x.actividad)
+btn_graph = tk.Button(root,text = 'Grafico',width=8)
+btn_graph.pack()
+
+btn_graph.configure(command = graph.crear_grafica(x.cantidades))
 
 lbl_ejecucion = tk.Label(root, text=('Programa en ejecucion'))
 

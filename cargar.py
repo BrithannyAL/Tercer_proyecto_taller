@@ -30,7 +30,7 @@ def cargar_archivos_emociones():
             if lectura != '':
                 respuesta = emociones(lectura[0], lectura[1], lectura[2], lectura[3])
             lectura = eval(lector.readline()[:-1])    
-            while (lectura != ''):
+            while lectura != '':
                 respuesta.insertar(emociones(lectura[0], lectura[1], lectura[2], lectura[3]))
                 lectura = eval(lector.readline()[:-1])      
     except FileNotFoundError as error:
