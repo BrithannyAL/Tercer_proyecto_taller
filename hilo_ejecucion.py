@@ -90,7 +90,7 @@ def guardar_reporte_emociones():
                 'Ultimos cinco minutos' : 'El usuario experientó muchos cambios de emociones',
                 'Emoción dominante' : 'No hay emoción dominante'}
     
-    emociones_data.insertar(emociones(usuario, actividad_actual, dicc))
+    emociones_data.insertar(emociones(usuario, actividad_actual, dicc, cantidades))
     emociones_data.guardar_en_archivos()
 
 proceso_emociones=threading.Thread(target=guardar_reporte_emociones)

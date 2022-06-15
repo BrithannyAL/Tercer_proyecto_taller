@@ -52,21 +52,23 @@ class emociones:
     usuario = None
     actividad = None
     emociones = None
+    cantidades = None
     sig = None
     ant = None
 
-    def __init__(self, u, a, e):
+    def __init__(self, u, a, e, c):
         self.usuario = u
         self.actividad = a
         self.emociones = e
+        self.cantidades = c
 
     def recorrer_lista(self) -> str:
         actual = self
         respuesta = "["
         while actual.sig != None:
-            respuesta+=f"'{actual.usuario, actual.actividad, actual.emociones}',"
+            respuesta+=f"'{actual.usuario, actual.actividad, actual.emociones, actual.cantidades}',"
             actual=actual.sig
-        respuesta+= f"'{actual.usuario, actual.actividad, actual.emociones}']"
+        respuesta+= f"'{actual.usuario, actual.actividad, actual.emociones, actual.cantidades}']"
         return respuesta
     
     def insertar (self,rn):
@@ -81,11 +83,11 @@ class emociones:
         try:
             with open("emociones.dat", "tw") as archivo:
                 archivo.writelines(
-                    [puntero.usuario, puntero.actividad, puntero.emociones].__str__()+"\n")
+                    [puntero.usuario, puntero.actividad, puntero.emociones, puntero.cantidades].__str__()+"\n")
                 while puntero.sig != None:
                     puntero = puntero.sig
                     archivo.writelines(
-                        [puntero.usuario, puntero.actividad, puntero.emociones].__str__()+"\n")
+                        [puntero.usuario, puntero.actividad, puntero.emociones, puntero.cantidades].__str__()+"\n")
         except FileNotFoundError as error:
             messagebox.showerror(title="Error" ,message="Problemas al guardar la informaciÃ³n en los archivos")
     

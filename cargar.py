@@ -28,10 +28,10 @@ def cargar_archivos_emociones():
         with open("emociones.dat", "tr") as lector:
             lectura = eval(lector.readline()[:-1])
             if lectura != '':
-                respuesta = emociones(lectura[0], lectura[1], lectura[2])
+                respuesta = emociones(lectura[0], lectura[1], lectura[2], lectura[3])
             lectura = eval(lector.readline()[:-1])    
             while (lectura != ''):
-                respuesta.insertar(emociones(lectura[0], lectura[1], lectura[2]))
+                respuesta.insertar(emociones(lectura[0], lectura[1], lectura[2], lectura[3]))
                 lectura = eval(lector.readline()[:-1])      
     except FileNotFoundError as error:
         respuesta = askyesno(title="Error", message="No se encontró el archivo de datos ¿Desea crear un nuevo archivo de registros?")
