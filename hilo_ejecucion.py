@@ -43,26 +43,20 @@ def guardar_reporte_emociones():
             actividad_actual = x[0]
     
     reporte_emociones = []
-    print(hora_i)
-    print(hora_f)
     while (hora_i < datetime.now().time() < hora_f) and (estado_tarea_emociones == True): 
         reporte_emociones.append(detectar_emociones())
-        print(reporte_emociones)
         tomar_foto()
         sleep(1)
-        
-    emociones_pcinco = []
-    emociones_ucinco = []
+      
+    emociones_totales = []  
+    for x in reporte_emociones:
+        for y in x:
+            emociones_totales.append(y)
+            
     emociones_data = cargar.cargar_archivos_emociones()
         
-    for x in emociones_data.emociones['Primeros cinco minutos']:
-        for y in x:
-            emociones_pcinco.append(y)  
-            
-    for x in emociones_data.emociones['Ultimos cinco minutos']:
-        for y in x:
-            emociones_ucinco.append(y)  
-            
+    emociones_pcinco = emociones_totales[:5]
+    emociones_ucinco = emociones_totales[:-5]
     lista_emocion_dominante = emociones_pcinco + emociones_ucinco
     
     try:    
