@@ -5,11 +5,7 @@ import time
 from datetime import datetime
 import cargar
 import hilo_ejecucion
-<<<<<<< HEAD
-=======
 import os
-import test
->>>>>>> e70520a155613933ea8392898424762638606368
 
 root = tk.Tk()
 root.title('Proyecto Taller')
@@ -31,12 +27,7 @@ def hilo_principal():
             actividad_actual = i[0]
     if secs % 2 == 0:  # every other second
         print(actividad_actual)
-<<<<<<< HEAD
-        hilo_ejecucion.tarea_paralela()
     after_id = root.after(10000, hilo_principal)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
-=======
-    after_id = root.after(10000, curso_actual)   #1000 = 1 segundo   #60000 = 1 minuto   #300000 = 5 minutos 
->>>>>>> e70520a155613933ea8392898424762638606368
 
 
 def hide(x):
@@ -51,32 +42,28 @@ FREQ = 2500
 DUR = 150
 after_id = None
 secs = 0
-
+global encendido 
+encendido = int
 def encender():
+    encendido = 1
     global secs
     hilo_ejecucion.encender_tarea_paralela()
     secs = 0
-<<<<<<< HEAD
-    hilo_principal()  # Se empieza el proceso
-
-
-=======
     #curso_actual()  # start repeated checking
->>>>>>> e70520a155613933ea8392898424762638606368
 
 def apagar():
+    encendido = 0
     global after_id
     hilo_ejecucion.apagar_tarea_paralela()
     if after_id:
         root.after_cancel(after_id)
         after_id = None
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e70520a155613933ea8392898424762638606368
 def generar_reporte():
-    return 0
+    if encendido == 1 :
+        messagebox.showerror('Para ver los reportes apague el sistema')
+    elif encendido == 0:
+        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAA')
 
 #Botones pantalla principal
 
@@ -101,7 +88,7 @@ btn_iniciar.configure(command=lambda:
 btn_detener.configure(command=lambda:
     [lbl_ejecucion.pack_forget(), apagar()])
 
-btn_reporte.configure(command = generar_reporte())
+btn_reporte.configure(command = lambda: [generar_reporte()])
 
 btn_salir.configure(command = root.destroy)
 

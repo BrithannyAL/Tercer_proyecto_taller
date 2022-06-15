@@ -5,7 +5,7 @@ from  control import detectar_concentracion, detectar_emociones
 import cargar
 from objetos import usuario, emociones   
 from datetime import datetime
-
+from statistics import mode
 #variables globales
 estado_tarea_paralela = True
 estado_tarea_emociones = True
@@ -52,11 +52,14 @@ def guardar_reporte_emociones():
         tomar_foto()
         sleep(1)
         
-    dicc = {'Primeros cinco minutos' : reporte_emociones[:5],
-            'Ultimos cinco minutos' : reporte_emociones[-5:]}
-    linea = emociones(usuario, actividad_actual, dicc)
-    linea.guardar_en_archivos()
-    print(linea)
+    emociones_pcinco = reporte_emociones[:5]
+    emociones_ucinco = reporte_emociones[-5:]
+        
+    dicc = {'Primeros cinco minutos' : mode(emociones_pcinco),
+            'Ultimos cinco minutos' : mode(emociones_ucinco)}
+    emociones_data = cargar.cargar_archivos_emociones()
+    emociones_data.insertar(emociones(usuario, actividad_actual, dicc))
+    emociones_data.guardar_en_archivos()
 
 proceso_emociones=threading.Thread(target=guardar_reporte_emociones)
  
