@@ -1,11 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def crear_grafica(a,p,i,s):
+def crear_grafica(a,p,i,s,c):
 
-  emociones = ['Alegria', 'Pena', 'Ira', 'Sorpresa']
+  emociones = ['Alegria', 'Pena', 'Ira', 'Sorpresa', 'Confusion']
 
-  veces = [a,p,i,s]
+  veces = [a,p,i,s,c]
 
 
   df_veces = pd.DataFrame(

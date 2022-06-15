@@ -52,7 +52,8 @@ def guardar_reporte_emociones():
         
     emociones_pcinco = []
     emociones_ucinco = []
-    
+
+
     emociones_data = cargar.cargar_archivos_emociones()
         
     for x in emociones_data.emociones['Primeros cinco minutos']:
@@ -65,7 +66,7 @@ def guardar_reporte_emociones():
         
     dicc = {'Primeros cinco minutos' : mode(emociones_pcinco),
             'Ultimos cinco minutos' : mode(emociones_ucinco)}
-            
+    
     emociones_data.insertar(emociones(usuario, actividad_actual, dicc))
     emociones_data.guardar_en_archivos()
 
