@@ -63,9 +63,13 @@ def guardar_reporte_emociones():
     for x in emociones_data.emociones['Ultimos cinco minutos']:
         for y in x:
             emociones_ucinco.append(y)  
-        
-    dicc = {'Primeros cinco minutos' : mode(emociones_pcinco),
-            'Ultimos cinco minutos' : mode(emociones_ucinco)}
+    
+    try:    
+        dicc = {'Primeros cinco minutos' : mode(emociones_pcinco),
+                'Ultimos cinco minutos' : mode(emociones_ucinco)}
+    except:
+        dicc = {'Primeros cinco minutos' : 'El usuario experientó muchos cambios de emociones',
+                'Ultimos cinco minutos' : 'El usuario experientó muchos cambios de emociones'}
     
     emociones_data.insertar(emociones(usuario, actividad_actual, dicc))
     emociones_data.guardar_en_archivos()
