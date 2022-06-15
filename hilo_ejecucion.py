@@ -6,6 +6,10 @@ import cargar
 from objetos import usuario, emociones   
 from datetime import datetime
 from statistics import mode
+<<<<<<< HEAD
+=======
+
+>>>>>>> 217819cb8a94138abdaa214b8eb84d7ea9195bed
 #variables globales
 estado_tarea_paralela = True
 estado_tarea_emociones = True
@@ -42,21 +46,38 @@ def guardar_reporte_emociones():
             actividad_actual = x[0]
     
     reporte_emociones = []
-    print("JUSTO ANTES DEL WHILE")
     print(hora_i)
     print(hora_f)
     while (hora_i < datetime.now().time() < hora_f) and (estado_tarea_emociones == True): 
-        print("YA ESTOY EN EL WHILE")
         reporte_emociones.append(detectar_emociones())
         print(reporte_emociones)
         tomar_foto()
         sleep(1)
         
+<<<<<<< HEAD
     emociones_pcinco = reporte_emociones[:5]
     emociones_ucinco = reporte_emociones[-5:]
         
     dicc = {'Primeros cinco minutos' : mode(emociones_pcinco),
             'Ultimos cinco minutos' : mode(emociones_ucinco)}
+=======
+    emociones_pcinco = []
+    emociones_ucinco = []
+    
+    emociones_data = cargar.cargar_archivos_emociones()
+        
+    for x in emociones_data.emociones['Primeros cinco minutos']:
+        for y in x:
+            emociones_pcinco.append(y)  
+            
+    for x in emociones_data.emociones['Ultimos cinco minutos']:
+        for y in x:
+            emociones_ucinco.append(y)  
+        
+    dicc = {'Primeros cinco minutos' : mode(emociones_pcinco),
+            'Ultimos cinco minutos' : mode(emociones_ucinco)}
+    
+>>>>>>> 217819cb8a94138abdaa214b8eb84d7ea9195bed
     emociones_data = cargar.cargar_archivos_emociones()
     emociones_data.insertar(emociones(usuario, actividad_actual, dicc))
     emociones_data.guardar_en_archivos()
